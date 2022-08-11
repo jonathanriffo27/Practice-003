@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className="App">
-      <Carrousel width='w-screen' />
+      <Carrousel width='w-screen' timer='3000' />
     </div>
   )
 }

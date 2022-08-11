@@ -3,7 +3,7 @@ import image1 from '../../../img/image1.jpeg'
 import image2 from '../../../img/image2.jpeg'
 import image3 from '../../../img/image3.jpeg'
 
-const Carrousel = ({width='w-screen'}:any) => {
+const Carrousel = ({width='w-screen', timer='3000'}:any) => {
     const json = [
         {
             image: image1,
@@ -33,7 +33,7 @@ const Carrousel = ({width='w-screen'}:any) => {
             setTimeout(() => {
                 setText(true)
             },1000)
-        }, 3000)
+        }, timer)
         return () => clearInterval(interval)
     })
 
@@ -43,7 +43,7 @@ const Carrousel = ({width='w-screen'}:any) => {
             const nextIndex = selectedIndex < json.length - 1 ? selectedIndex + 1 : 0;
             setSelectedImage(json[nextIndex]);
             setSelectedIndex(nextIndex)
-        },300);
+        },250);
     }
 
     return (
