@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import 'animate.css';
 
 const Carrousel = ({width='w-screen', timer='3000', json}:any) => {
     
@@ -27,12 +28,36 @@ const Carrousel = ({width='w-screen', timer='3000', json}:any) => {
         },250);
     }
 
+    const animateCSS = (element:any , animation:any , prefix = 'animate__')=>
+        // We create a Promise and return it
+        new Promise((resolve, reject) => {
+            const animationName = `${prefix}${animation}`;
+            const node = document.querySelector(element);
+
+            node.classList.add(`${prefix}animated`, animationName);
+
+            // When the animation ends, we clean the classes and resolve the Promise
+            function handleAnimationEnd(event:any) {
+            event.stopPropagation();
+            node.classList.remove(`${prefix}animated`, animationName);
+            resolve('Animation ended');
+            }
+
+            node.addEventListener('animationend', handleAnimationEnd, {once: true});
+        });
+    animateCSS('.title', 'backInLeft');
+    animateCSS('.description', 'fadeInUp');
+
     return (
         <div className={`flex bg-black ${width} h-auto relative`}>
             <img src={selectedObject.image} alt="" className={`w-full duration-[1000ms] ${loaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setLoaded(true)} />
-            <div className={`flex flex-col justify-center w-full h-full z-50 absolute text-white duration-500 pl-7 md:pl-20 gap-3 ${text ? 'opacity-100' : 'opacity-0'}`}>
-                <span className={`text-3xl md:text-5xl font-bold`}>{selectedObject.title}</span>
-                <span className={`text-sm md:text-xl w-[300px] md:w-[500px]`}>{selectedObject.description}</span>
+            <div className={`flex flex-col justify-center w-full h-full z-50 absolute text-white transition-all duration-500 pl-7 md:pl-20 gap-3 ${text ? 'opacity-100' : 'opacity-0'}`}>
+                <div className='title'>
+                    <span className={`text-3xl md:text-5xl font-bold`}>{selectedObject.title}</span>
+                </div>
+                <div className='description w-[300px] md:w-[500px]'>
+                    <span className={`text-sm md:text-xl`}>{selectedObject.description}</span>
+                </div>
             </div>
         </div>
     )
