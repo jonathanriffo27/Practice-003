@@ -7,17 +7,17 @@ const Carrousel = ({width='w-screen'}:any) => {
     const json = [
         {
             image: image1,
-            title: 'Titulo1',
+            title: 'Titulo 1',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, expedita architecto repellendus neque ex consectetur tempora quas ratione vel odio.'
         },
         {
             image: image2,
-            title: 'Titulo2',
+            title: 'Titulo 2',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, expedita architecto repellendus neque ex consectetur tempora quas ratione vel odio.'
         },
         {
             image: image3,
-            title: 'Titulo3',
+            title: 'Titulo 3',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, expedita architecto repellendus neque ex consectetur tempora quas ratione vel odio.'
         }
     ]
@@ -40,8 +40,7 @@ const Carrousel = ({width='w-screen'}:any) => {
     const next = () => {
         setLoaded(false)
         setTimeout(() => {
-            const condition = selectedIndex < json.length - 1;
-            const nextIndex = condition ? selectedIndex + 1 : 0;
+            const nextIndex = selectedIndex < json.length - 1 ? selectedIndex + 1 : 0;
             setSelectedImage(json[nextIndex]);
             setSelectedIndex(nextIndex)
         },300);
