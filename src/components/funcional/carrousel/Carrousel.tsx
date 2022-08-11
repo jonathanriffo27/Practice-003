@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 const Carrousel = ({width='w-screen', timer='3000', json}:any) => {
     
     const [selectedIndex, setSelectedIndex] = useState(0)
-    const [selectedObject, setSelectedImage] = useState(json[0])
+    const [selectedObject, setSelectedObject] = useState(json[0])
     const [loaded, setLoaded] = useState(false)
     const [text, setText] = useState(true)
     
@@ -22,7 +22,7 @@ const Carrousel = ({width='w-screen', timer='3000', json}:any) => {
         setLoaded(false)
         setTimeout(() => {
             const nextIndex = selectedIndex < json.length - 1 ? selectedIndex + 1 : 0;
-            setSelectedImage(json[nextIndex]);
+            setSelectedObject(json[nextIndex]);
             setSelectedIndex(nextIndex)
         },250);
     }
